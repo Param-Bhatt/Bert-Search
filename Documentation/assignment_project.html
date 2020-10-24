@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Our Assignment</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Cinzel Decorative' rel='stylesheet'>
+
+  <style>
+    .row.content {
+      margin-top: 5%;
+    }
+
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 18px;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+
+    th,
+    td {
+      padding: 15px 15px;
+    }
+
+    table {
+      border-spacing: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid     ">
+    <div class="row content">
+      <div class="col-sm-8 col-sm-offset-2 ">
+        <b>
+          <p class="text-center" style="font-size: 35px;">A Information Retrival System <br><i
+              style="font-size: 20px;">(through emails), (used Python)</i></p>
+        </b>
+        <hr>
+        <b class="text-center" style="font-size: 28px"> Roadmap & Architecture</b>
+        <hr>
+        <b class="text-left" style="font-size: 25px;">Architecture</b>
+        <p style = "padding-left: 5%;"> We have chosen an architecture similar to the microservices architecture where we have broken down each functionality to it's smallest component.</p>
+        <br><b class="text-left" style="font-size: 25px;">Our dataset choice</b>
+        <ul><li>We have implemented an Information Retrieval system to search for relevant emails from a dataset of Enron Corporation. Their emails were leaked into the public and it was reviled that they were a farud organisations.</li>
+        <li>We chose this dataset as it had a lot of emails and they were generic and formal which gave us a well paved way to find a lot of words in our pretrained embeddings corpus.</li> </ul>
+        <br><b class="text-left" style="font-size: 25px;">Loading the dataset</b>
+
+        <ul>The dataset that we have used here is a dataset containing multiple emails.
+          This dataset is popularly available and free to use.
+        </ul>
+        <br>
+
+        <b class="text-left" style="font-size: 25px;">Pre-processing the Data</b>
+
+        <ul>We have used the stop words and lemmatizers from nltk library itself for our preprocessing. A function
+          pre-process has been used for preprocessing each individual string of the mails.
+          <li> In the function , first we convert all the strings to lower case.</li>
+          <li> Then we sanitize our emails ,i.e., remove unwanted special characters, blank spaces etc and keep our
+            input limited to the english characters and numbers.</li>
+          <li> Then we remove the existing stopwords in the string and lemmatize our string.</li>
+          <li> It finally returns our pre-processed string.</li>
+        </ul>
+        <br>
+
+        <b class="text-left" style="font-size: 25px;">Embedding our data</b>
+
+        <ul>Once we have our pre-processed data, we need a way to determine the relevance of specific strings among each
+          other. For this , we used 2 different types of pretrained embeddings and compared their results as well :
+          <ol>
+            <li>BERT Embedding</li>
+            <li>Glove Embedding</li>
+          </ol>
+          <li> We iterate through each mail here, and embed them using bert first. We then store it in a pickl file , to
+            not only help with the storage size but also for a quicker and faster retrival.</li>
+          <li> We iterate through each mail here, and embed them now using glove. We then store it in a pickl file , to
+            not only help with the storage size but also for a quicker and faster retrival.</li>
+          <li> For testing purposes , we have also stored both pre-processed and normal data from the dataset. This
+            helped us understand what difference the preprocessing makes , and how it affects our performance .</li>
+        </ul>
+        <br>
+
+        <b class="text-left" style="font-size: 25px;">Searching for a string</b>
+
+        <ul>Now that we have our embedded dataset ready , we are good to go for searching.:
+
+          <li> We take in the query string from the user.</li>
+          <li> Once again , we preprocess the query using the same preprocess function that we have used to preprocess
+            our dataset.</li>
+          <li> Now, we run the embedding on our query. After this step, we have both our query and dataset in the
+            embedded form.</li>
+          <li> Now , we calculate the cosine scores between each string in the email and our string , in a dynamic
+            array.</li>
+          <li> We list out the queries , their cosine scores , the email in which the query was found , and the line in
+            the email at which the query was found. These are listed out in the descending order.</li>
+          <li> Our function uses a default argument of 3 results to be listed out, however, we can add it in the query
+            function to get more query results.</li>
+        </ul>
+        <br>
+
+
+        <hr>
+        <b class="text-center" style="font-size: 28px"> Libraries Used</b>
+        <hr>
+        <ul>
+          <li>datasets &emsp;&emsp;&nbsp;&nbsp;&nbsp;: <i>This has been used to get our email corpus </i></li>
+          <li>nltk &emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <i>This has been used for
+              pre-processing our dataset. We used it to lemmatize
+              our&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              dataset and remove the stop words from it.</i></li>
+          <li>numpy &emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <i>This library has been used to work with arrays and
+              apply linear algebra concepts.</i></li>
+          <li>pickle &emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <i>This has been used to store our built index in
+              a .pkl file,</i></li>
+          <li>mxnet &emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <i>This has been used so that we can interface the
+              gpu using cuda library. This results in
+              &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reduction
+              of processing time from 4h 53min (Colab CPU) to 7mins (Nvidia Tesla T4). </i></li>
+          <li>gluonnlp &emsp;&emsp;&nbsp;&nbsp;: <i>This was a dependency for mxnet to interface with cuda.</i></li>
+          <li>bert-embedding : <i>This has been used to get the pretrained bert embeddings of our words.</i></li>
+          <li>re(regex) &emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <i>This is a regular expression library to work on a
+              set of strings.</i></li>
+
+        </ul>
+        <hr>
+        <b class="text-center" style="font-size: 28px"> Data Structues and Algorithms Used</b>
+        <hr>
+        <!--table>
+          <tr>
+            <th>Variable</th>
+            <th>Data Structure</th>
+          </tr>
+          <tr>
+            <td>text</td>
+            <td>String : To get input and pre-process it</td>
+          </tr>
+          <tr>
+            <td>word</td>
+            <td>String : This is the string corresponding to each word in text</td>
+          </tr>
+          <tr>
+            <td>lemm_words</td>
+            <td>Array : An array of strings to store our lemmatized words</td>
+          </tr>
+          <tr>
+            <td>dataset </td>
+            <td>Dictionary: A dictionary of train and test where each is a dictionary having email_body and subject_line
+              as string.</td>
+          </tr>
+          <tr>
+            <td>emails</td>
+            <td>Array : It is an array of strings having all of the training emails in the dataset.</td>
+          </tr>
+          <tr>
+            <td>emails_sent</td>
+            <td>Array : It is an array of strings where each string is a particular email line.</td>
+          </tr>
+          <tr>
+            <td>corpus</td>
+            <td>Array : Preprocessed emails_sent</td>
+          </tr>
+
+        </table-->
+        We have majorly used 3 data structures:
+        <ul>
+          <li>String : It is used in multiple function calls and instances. This data type forms the basis of our dataset</li>
+          <li>Lists : It has been used to store multiple strings. Our corpus is made up of a list of strings.</li>
+          <li>Dictionary : We have used this for creating our references from line to email. </li>
+        </ul>
+        <hr>
+        
+        <h3>Run-Time Analysis of our Search Engine: </h3>
+        <hr>
+
+
+        <h3>
+          Building the Indexes with and without preprocessing for both the embeddings, we found the following :
+        </h3>
+        <ul>
+          <li>
+            Preprocessing is actually faster in processing as it reduces the length of words to process because it
+            discards words not in the embeddings, BERT does a better job as it tries to find the embeddings of
+            subwords to find the meaning, rather than just discarding the sentence.
+          </li><br>
+          <li>
+            BERT is highy parallel as the CPU user time is higher than the wall time, meaning that CPU worked more
+            time that what elapsed in the real word, this is because the CPU is multithreaded.
+          </li>
+        </ul>
+        <h3>The graphical analysis is shown below :</h3>
+        <img src="resources/Index.jpeg" style="max-width: 85%;margin-left:7.5%;height: auto;"><br><br>
+        <img src="resources/Query.jpeg" style="margin-left:7.5%;max-width: 85%;height: auto;">
+        <p style="font-size: 20px;">
+          <t>
+            Here we can clearly see the difference of time taken by models:<br><br>
+            <ol>
+              <li>
+                The major difference in index building time in BERT and Glove is because for Glove we are reading
+                the Embeddings from the dictionary, where as for BERT we have to find the embeddings which is
+                compute intensive. This is highly parallalized due to this implementation on GPU.
+              </li><br>
+              <li>
+                The difference in the query search time is very miniscule as here we are iterating through the
+                Index and finding for the cosing score. Since glove doesn't have embeddings for every word it
+                skips maky sentences in the dataset which makes it loose information, decreasing the quantum it
+                has to traverse.
+              </li>
+            </ol>
+          </t>
+        </p>
+
+        <br>
+
+      </div>
+
+    </div>
+
+  </div>

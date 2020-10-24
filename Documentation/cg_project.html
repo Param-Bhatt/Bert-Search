@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Assignment I of the course IS F469 Information Retrieval</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+  <style>
+    body {
+      font-family: 'Open Sans';
+    }
+
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 2;
+      height: 70px;
+      /*width: 10px;*/
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav" style="font-size: 25px;">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="./assignment_project.html" target="_blank">Design Document</a></li>
+          <li><a href="./Embeddings_Retrieval.html" target="_blank">Documentation</a></li>
+          <li><a href="./assignment_test.html" target="_blank">Tests conducted</a></li>
+          <li><a href="./assignment_dev.html" target="_blank">Developers</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid text-center">
+    <div class="row content">
+      <div class="col-sm-10 col-sm-offset-1 ">
+        <div class="text-left">
+          <h1 class="text-center">IS F469 Information Retrieval Assignment I</h1><br><br>
+          <ol>
+            <li>
+              <h4>
+                Using the knowledge gained from the classes, we made a domain specific search engine. We have
+                implemented an Information Retrieval system to search for relevant emails from a dataset of Enron
+                Corporation. Their emails were leaked into the public and it was reviled that they were a farud
+                organisations.<br> We chose this dataset as it had a lot of emails and they were generic and formal
+                which gave us a well paved way to find a lot of words in our pretrained embeddings corpus.
+            </li>
+            </h4><br>
+
+            <li>
+              <h4>
+                We used the concept of embeddings where each word is assigned in a multi-dimensional vector space. The
+                vector corresponding for each word depicts it's semantic meaning. It is better at representing the
+                meanings of the words than TF-IDF or any other classical method.
+              </h4>
+            </li><br>
+
+            <li>
+              <h4>
+                We used embedddings which were learnt by deep learning models. The embeddings models are explained
+                further. <br>
+                <ul><br>
+                  <li>
+                    BERT :- Bi-Directional Encoder Representation from Transformers is a deep learning model which
+                    focuses on attention to learn and understand embeddings. It has learnt the embeddings in a 768-d
+                    vector space.
+                  </li><br>
+
+                  <li>
+                    GLOVE :- Global Vectors for Word Representation is a model for distributed word representations
+                    learnt from unsupervised learning where the distance between the embeddings of the words maps to
+                    their semantic similarity. It comes in various dimensional spaces such as 50-d,100-d, etc. We have
+                    used 300-d space which is the largest space given by GLOVE.
+                  </li>
+                </ul>
+              </h4>
+            </li><br>
+
+            <li>
+              <h4>
+                Documenting our code . We documented using <u>"pdocs3"</u> library as we have written our code in
+                python.
+            </li>
+            </h4><br>
+
+            <li>
+              <h4>
+                We created a separate html file, describing our data structrues and algorithm , our tests , and various
+                problems that we faced during writing this tracer. We have also added what we have learned from it and
+                the results obtained.
+            </li>
+            </h4>
+          </ol>
+          <hr>
+        </div>
+
+        <div class="text-center">
+          <h3>
+            We have completed this project using Google colab and have used jupyter-notebook environment. This is an
+            additional webpage we created for documenting our data structures, algorithms and the process, results, the
+            issues that we had while doing it and what results we obtained from doing this project.
+          </h3>
+
+          <h3>
+            The code has been uploaded on Github as well. The link to it is <a
+              href="https://github.com/Param-Bhatt/Search-Engine" target="_blank">here</a>.
+          </h3>
+
+          <h2>Made by</h2>
+          <h3>1. Param Bhatt ( 2018A8PS0862H )</h3>
+          <h3>2. Siddhant Kulkarni ( 2018A7PS0185H )</h3>
+          <h3>3. Yashvi Khant ( 2018A3PS0138H )</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
