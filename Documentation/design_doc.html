@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Our Assignment</title>
+  <title>Design Document</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -42,7 +42,7 @@
     <div class="row content">
       <div class="col-sm-8 col-sm-offset-2 ">
         <b>
-          <p class="text-center" style="font-size: 35px;">A Information Retrival System <br><i
+          <p class="text-center" style="font-size: 35px;">An Information Retrival System <br><i
               style="font-size: 20px;">(through emails), (used Python)</i></p>
         </b>
         <hr>
@@ -112,69 +112,79 @@
         <b class="text-center" style="font-size: 28px"> Libraries Used</b>
         <hr>
         <ul>
-          <li>datasets &emsp;&emsp;&nbsp;&nbsp;&nbsp;: <i>This has been used to get our email corpus </i></li>
-          <li>nltk &emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <i>This has been used for
+          <li>datasets : <i>This has been used to get our email corpus </i></li>
+          <li>nltk : <i>This has been used for
               pre-processing our dataset. We used it to lemmatize
-              our&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              our
               dataset and remove the stop words from it.</i></li>
-          <li>numpy &emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <i>This library has been used to work with arrays and
+          <li>numpy : <i>This library has been used to work with arrays and
               apply linear algebra concepts.</i></li>
-          <li>pickle &emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <i>This has been used to store our built index in
+          <li>pickle : <i>This has been used to store our built index in
               a .pkl file,</i></li>
-          <li>mxnet &emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <i>This has been used so that we can interface the
+          <li>mxnet : <i>This has been used so that we can interface the
               gpu using cuda library. This results in
-              &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reduction
+              reduction
               of processing time from 4h 53min (Colab CPU) to 7mins (Nvidia Tesla T4). </i></li>
-          <li>gluonnlp &emsp;&emsp;&nbsp;&nbsp;: <i>This was a dependency for mxnet to interface with cuda.</i></li>
+          <li>gluonnlp : <i>This was a dependency for mxnet to interface with cuda.</i></li>
           <li>bert-embedding : <i>This has been used to get the pretrained bert embeddings of our words.</i></li>
-          <li>re(regex) &emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <i>This is a regular expression library to work on a
+          <li>re(regex) : <i>This is a regular expression library to work on a
               set of strings.</i></li>
 
         </ul>
         <hr>
-        <b class="text-center" style="font-size: 28px"> Data Structues and Algorithms Used</b>
+        <b class="text-center" style="font-size: 28px"> Data Structues and Algorithms with their Justification</b>
         <hr>
-        <!--table>
-          <tr>
-            <th>Variable</th>
-            <th>Data Structure</th>
-          </tr>
-          <tr>
-            <td>text</td>
-            <td>String : To get input and pre-process it</td>
-          </tr>
-          <tr>
-            <td>word</td>
-            <td>String : This is the string corresponding to each word in text</td>
-          </tr>
-          <tr>
-            <td>lemm_words</td>
-            <td>Array : An array of strings to store our lemmatized words</td>
-          </tr>
-          <tr>
-            <td>dataset </td>
-            <td>Dictionary: A dictionary of train and test where each is a dictionary having email_body and subject_line
-              as string.</td>
-          </tr>
-          <tr>
-            <td>emails</td>
-            <td>Array : It is an array of strings having all of the training emails in the dataset.</td>
-          </tr>
-          <tr>
-            <td>emails_sent</td>
-            <td>Array : It is an array of strings where each string is a particular email line.</td>
-          </tr>
-          <tr>
-            <td>corpus</td>
-            <td>Array : Preprocessed emails_sent</td>
-          </tr>
-
-        </table-->
-        We have majorly used 3 data structures:
+        We have majorly used 3 data structures:<br><br>
         <ul>
-          <li>String : It is used in multiple function calls and instances. This data type forms the basis of our dataset</li>
-          <li>Lists : It has been used to store multiple strings. Our corpus is made up of a list of strings.</li>
+          <li>
+            <b>String</b> : It is used in multiple function calls and instances. This data type forms the basis of our dataset.<br><br>
+            <i>Justification:</i> From query to the email output almost everything is a sequence of characters, String is most obvious structure to use in such cases. They can be efficiently managed and can be splitted by space to get
+            <ul>
+              <li>
+                Individual words to remove stopwords, and find embeddings
+                <ul>
+                  <li>bert-embedding gets strings and finds each embeddings of each word in it.</li>
+                  <li>glove embeddings are stored in a dictionary which have words in the form of strings as keys for indexing.</li>
+                </ul>
+              </li>
+              <br>
+              <li>
+                Individual sentences to find the most similar ones
+                <ul>
+                  <li>
+                    We have queried for similarity with each sentence and this means to find each sentence which is very efficient and convinient once we use strings.
+                  </li>
+                </ul>
+              </li>
+            </ul> 
+          </li>
+          <br>
+          <li>
+            Lists : It has been used to store multiple strings. Our corpus is made up of a list of strings. 
+            <br><br>
+            <i>Justification:</i> Lists make it very convinient to handel large dimensional data, the embeddings of each word is a large (300, 768) dimentional data. The usage of lists help us by:
+            <ul>
+              <li>
+                Finding Cosine Score is very streamlined when we use lists.
+                <ul>
+                  <li>
+                    numpy library has inbuilt function to find the dot product which takes a list as input.
+                  </li>
+                  <li>
+                    Dividing the cosine by the magnitude of the large embedding is easily possible by numpy making the process efficient and convinient.
+                  </li>
+                </ul>
+              </li><br>
+              <li>
+                ##NNNEEED TO WRITEEEEEEEEEEEEEEEEEEEEEE!!!!!!!!!!!!!!!
+              </li>
+
+            </ul>
+            </li>
           <li>Dictionary : We have used this for creating our references from line to email. </li>
+          <li>
+            Combination of dictionary and Lists
+          </li>
         </ul>
         <hr>
         
