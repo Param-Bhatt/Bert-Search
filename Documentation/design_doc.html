@@ -37,7 +37,7 @@
   </style>
 </head>
 
-<body>
+<body style="background-color:rgb(47, 48, 49); color:snow;padding-bottom: 5%;">
   <div class="container-fluid     ">
     <div class="row content">
       <div class="col-sm-8 col-sm-offset-2 ">
@@ -62,7 +62,7 @@
         <br><b class="text-left" style="font-size: 25px;">Loading the dataset</b>
 
         <ul>The dataset that we have used here is a dataset containing multiple emails.
-          This dataset is popularly available and free to use.
+          This dataset is popularly available and free to use. We have a global variable document which is a list of strings where each string corresponds to an email. The email is broken at <i>\n</i> and queried as independent sentences. 
         </ul>
         <br>
 
@@ -251,8 +251,9 @@
           </li>
         </ul>
         <h3>The graphical analysis is shown below :</h3>
-        <img src="resources/Index.jpeg" style="max-width: 85%;margin-left:7.5%;height: auto;"><br><br>
-        <img src="resources/Query.jpeg" style="margin-left:7.5%;max-width: 85%;height: auto;">
+        <img src="resources/Index.jpeg" style="width: 100%; height: auto;"><br><br>
+        <img src="resources/Query.jpeg" style="width: 100%; height: auto;">
+        <br><br>
         <p style="font-size: 20px;">
           <t>
             Here we can clearly see the difference of time taken by models:<br><br>

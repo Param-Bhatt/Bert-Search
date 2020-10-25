@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>README</title>
+  <style class="darkreader darkreader--user-agent" media="screen">
+    html {
+      background-color: #1f2223 !important;
+    }
+
+    html,
+    body,
+    input,
+    textarea,
+    select,
+    button {
+      background-color: #1f2223;
+    }
+    .code{
+      background-color: cornsilk
+    }
+
+    html,
+    body,
+    input,
+    textarea,
+    select,
+    button {
+      border-color: #7f7669;
+      color: #f9f7f4;
+    }
+
+    a {
+      color: #3c9eff;
+    }
+
+    table {
+      border-color: #5e6569;
+    }
+
+    ::placeholder {
+      color: #c0b9af;
+    }
+
+    input:-webkit-autofill,
+    textarea:-webkit-autofill,
+    select:-webkit-autofill {
+      background-color: #5f6506 !important;
+      color: #f9f7f4 !important;
+    }
+
+    ::-webkit-scrollbar {
+      background-color: #282b2c;
+      color: #b9b2a6;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #4e5457;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #61696d;
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+      background-color: #52585b;
+    }
+
+    ::-webkit-scrollbar-corner {
+      background-color: #1f2223;
+    }
+
+    * {
+      scrollbar-color: #282b2c #4e5457;
+    }
+
+    ::selection {
+      background-color: #0657b8 !important;
+      color: #f9f7f4 !important;
+    }
+
+    ::-moz-selection {
+      background-color: #0657b8 !important;
+      color: #f9f7f4 !important;
+    }
+    code{
+      background-color:rgb(92, 89, 89);
+    }
+  </style>
+</head>
+
+
+<div id="readme" class="Box md js-code-block-container Box--responsive;" style="background-color:#1d1e1f; color:#f9f7f4; padding:2%">
+  <div class="Box-header d-flex flex-items-center flex-justify-between bg-white border-bottom-0">
+    <h2 style="align-self: center">
+      README
+    </h2>
+    <div>
+    </div>
+    <div class="Box-body px-5 pb-5">
+      <article class="markdown-body entry-content container-lg" itemprop="text">
+        <h1><a id="user-content-embeddings-search" class="anchor" aria-hidden="true"
+            href="https://github.com/Param-Bhatt/Search-engine#embeddings-search"><svg class="octicon octicon-link"
+              viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z">
+              </path>
+            </svg></a>Embeddings-Search</h1>
+        <p>Implemented a searching algorithm to check a sentence through a preset database of emails and find out the
+          most
+          similar in meaning</p>
+        <h3><a id="user-content-guidelines-for-using-" class="anchor" aria-hidden="true"
+            href="https://github.com/Param-Bhatt/Search-engine#guidelines-for-using-"><svg class="octicon octicon-link"
+              viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+
+            </svg></a>Guidelines for using :</h3>
+        <ul>
+          <li><i>dataset</i> is a global variable which contains all the data that our model will use. Hence, update the
+            dataset variable.
+            <br><code>dataset = set_dataset(&lt;your_dataset&gt;)</code><br>
+            <i>Note that the dataset variable should be an array of strings.</i></li>
+          <li>Now , to run the program , run :<br>
+            <code>unprep, prep = load_dataset_and_preprocess(dataset)</code>
+            <br>
+            <ul>
+              <li>For BERT Queries , you will have to run :<br>
+                <code>unprep_index = build_bert_embeddings_index(unprep)</code>
+                <br>
+                <code>unprep_indx_to_email = build_reference(unprep)</code></li>
+              <li>For GLOVE Queries, you will have run : <br>
+                <code>embeddings_dict = init_glove_embeddings()</code>
+                <br>
+                <code>prep_embeddings, prep_sentence = build_glove_index(prep)</code></li>
+            </ul>
+          </li>
+          <li>Once the dataset is fixed , you will have to rerun the entire code , since we are pre-processing and
+            storing
+            all the embedded data in our files.</li>
+          <li>Now , to execute a query, call the <i>search_<i> function, depending on whether you want to execute search
+                based on glove-embeddings or bert-embeddings. Since both will give accurate results , the choice is left
+                on the user.
+                <ul>
+                  <li>BERT Query (Normal data): <br>
+                    <pre><code>bert_search(query, unprep_index, unprep, unprep_indx_to_email, top_n=4, is_preprocess=False)
+</code></pre>
+                  </li>
+                  <li>BERT Query (Pre-processed data) : <br>
+                    <pre><code>bert_search(query, prep_index, prep, prep_indx_to_email, top_n=4, is_preprocess=True)
+</code></pre>
+                  </li>
+                  <li>GLOVE Query (Normal data): <br>
+                    <pre><code>glove_search(query, unprep_embeddings, unprep, unprep_indx_to_email, top_n=4, is_preprocess=False)
+</code></pre>
+                  </li>
+                  <li>GLOVE Query (Pre-processed data) : <br>
+                    <pre><code>glove_search(query, prep_embeddings, prep, prep_indx_to_email, top_n=4, is_preprocess=True)
+</code></pre>
+                  </li>
+                </ul>
+              </i></i></li><i><i>
+            </i></i>
+        </ul><i><i>
+            <h3><a id="user-content-dependencies-" class="anchor" aria-hidden="true"
+                href="https://github.com/Param-Bhatt/Search-engine#dependencies-"><svg class="octicon octicon-link"
+                  viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+                  <path fill-rule="evenodd"
+                    d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z">
+                  </path>
+                </svg></a>Dependencies :</h3>
+            <p>We install these libraries each time when the program is run, and it is recommended to enable GPU on your
+              google colab as well, to speed up the pre-processing.</p>
+            <ul>
+              <li>datasets<br>
+                <ul>
+                  <li><i>We have used datasets for taking our dataset. If you have a custom dataset, you can omit
+                      this.</i></li>
+                </ul>
+              </li>
+              <li>nltk</li>
+              <li>numpy</li>
+              <li>pickle</li>
+              <li>mxnet <em>(Optional)</em> <br>
+                <ul>
+                  <li><i>It is recommended to use a GPU to speed up the pre-processing for your dataset. You can skip
+                      it,
+                      if you wish to.</i> <br></li>
+                  <li><i>Also, mxnet-cuda is specific to nvidia graphic cards. Please note this.</i> <br></li>
+                </ul>
+              </li>
+              <li>gluonnlp *(Optional, it is a dependency for mxnet)</li>
+              <li>bert-embedding</li>
+              <li>re(regex)</li>
+              <li>pdoc3 ( for documentation )</li>
+            </ul>
+            <h3><a id="user-content-contribution-guidelines" class="anchor" aria-hidden="true"
+                href="https://github.com/Param-Bhatt/Search-engine#contribution-guidelines"><svg
+                  class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16"
+                  aria-hidden="true">
+                  <path fill-rule="evenodd"
+                    d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z">
+                  </path>
+                </svg></a>Contribution Guidelines:</h3>
+            <h5><a id="user-content-creating-a-pr" class="anchor" aria-hidden="true"
+                href="https://github.com/Param-Bhatt/Search-engine#creating-a-pr"><svg class="octicon octicon-link"
+                  viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+                  <path fill-rule="evenodd"
+                    d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z">
+                  </path>
+                </svg></a>Creating a PR:</h5>
+            <ul>
+              <li>Fork the repository to your own account</li>
+              <li>Clone the repository to your local system , make any changes you wish to</li>
+            </ul>
+            <pre><code>git clone https://github.com/&lt;your_username&gt;/Search-Engine
+</code></pre>
+            <ul>
+              <li>For each new feature, create a new branch of the name <i>feature_name<i>
+                    <pre><code>git checkout -b &lt;feature_name&gt;
+</code></pre>
+                  </i></i></li><i><i>
+                  <li>Comment the code properly with all necessary comments wherever needed</li>
+                  <li>While coding , follow the iflake coding guidelines for a cleaner and better code quality.
+                    <ul>
+                      <li>You can install iflake8 on your system as :
+                        <pre><code>pip install flake8
+</code></pre>
+                      </li>
+                      <li>You can run it as :
+                        <pre><code>flake8 path/to/your/code
+</code></pre>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>Push the changes to your fork</li>
+                  <li>Create a pull request</li>
+                  <li>Resolve conflicts as required</li>
+                </i></i>
+            </ul><i><i>
+                <h5><a id="user-content-to-install-dependencies" class="anchor" aria-hidden="true"
+                    href="https://github.com/Param-Bhatt/Search-engine#to-install-dependencies"><svg
+                      class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16"
+                      aria-hidden="true">
+                      <path fill-rule="evenodd"
+                        d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z">
+                      </path>
+                    </svg></a>To install dependencies</h5>
+                <ul>
+                  <li>datasets</li>
+                </ul>
+                <pre><code>pip install datasets
+</code></pre>
+                <ul>
+                  <li>nltk</li>
+                </ul>
+                <pre><code>pip install nltk
+</code></pre>
+                <ul>
+                  <li>numpy</li>
+                </ul>
+                <pre><code>pip install numpy
+</code></pre>
+                <ul>
+                  <li>pickle</li>
+                </ul>
+                <pre><code>pip install pickle5
+</code></pre>
+                <ul>
+                  <li>mxnet</li>
+                </ul>
+                <pre><code>pip install mxnet-cu101
+</code></pre>
+                <ul>
+                  <li>gluonnlp</li>
+                </ul>
+                <pre><code>pip install gluonnlp
+</code></pre>
+                <ul>
+                  <li>bert-embedding</li>
+                </ul>
+                <pre><code>pip install bert-embedding --no-deps
+</code></pre>
+                <ul>
+                  <li>re(regex)</li>
+                </ul>
+                <pre><code>pip install regex
+</code></pre>
+              </i></i>
+          </i></i>
+      </article>
+    </div>
+  </div>
+</div>
+</div>
+<div aria-live="polite" class="sr-only"></div>
+</body>
+
+</html>
