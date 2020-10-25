@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# Search-Engine
-Implemented a searching algorithm to check through a preset database of emails
-=======
 # Embeddings-Search
 Implemented a searching algorithm to check a sentence through a preset database of emails and find out the most similar in meaning
 
@@ -121,4 +117,4 @@ pip install bert-embedding --no-deps
 ```
 pip install regex
 ```
->>>>>>> 275c9228c799dc7c7e60d199a1d2e4e22ee8945b
+
