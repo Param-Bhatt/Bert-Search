@@ -42,17 +42,23 @@
     <div class="row content">
       <div class="col-sm-8 col-sm-offset-2 ">
         <b>
-          <p class="text-center" style="font-size: 35px;">An Information Retrival System <br><i
+          <p class="text-center" style="font-size: 35px;">An Information Retrieval System <br><i
               style="font-size: 20px;">(through emails), (used Python)</i></p>
         </b>
         <hr>
         <b class="text-center" style="font-size: 28px"> Roadmap & Architecture</b>
         <hr>
         <b class="text-left" style="font-size: 25px;">Architecture</b>
-        <p style = "padding-left: 5%;"> We have chosen an architecture similar to the microservices architecture where we have broken down each functionality to it's smallest component.</p>
+        <p style="padding-left: 5%;"> We have chosen an architecture similar to the microservices architecture where we
+          have broken down each functionality to it's smallest component.</p>
         <br><b class="text-left" style="font-size: 25px;">Our dataset choice</b>
-        <ul><li>We have implemented an Information Retrieval system to search for relevant emails from a dataset of Enron Corporation. Their emails were leaked into the public and it was reviled that they were a farud organisations.</li>
-        <li>We chose this dataset as it had a lot of emails and they were generic and formal which gave us a well paved way to find a lot of words in our pretrained embeddings corpus.</li> </ul>
+        <ul>
+          <li>We have implemented an Information Retrieval system to search for relevant emails from a dataset of Enron
+            Corporation. Their emails were leaked into the public and it was reviled that they were fraud organisation.
+          </li>
+          <li>We chose this dataset as it had a lot of emails and they were generic and formal which gave us a
+            well-paved way to find a lot of words in our pretrained embeddings corpus.</li>
+        </ul>
         <br><b class="text-left" style="font-size: 25px;">Loading the dataset</b>
 
         <ul>The dataset that we have used here is a dataset containing multiple emails.
@@ -81,9 +87,9 @@
             <li>Glove Embedding</li>
           </ol>
           <li> We iterate through each mail here, and embed them using bert first. We then store it in a pickl file , to
-            not only help with the storage size but also for a quicker and faster retrival.</li>
+            not only help with the storage size but also for a quicker and faster retrieval.</li>
           <li> We iterate through each mail here, and embed them now using glove. We then store it in a pickl file , to
-            not only help with the storage size but also for a quicker and faster retrival.</li>
+            not only help with the storage size but also for a quicker and faster retrieval.</li>
           <li> For testing purposes , we have also stored both pre-processed and normal data from the dataset. This
             helped us understand what difference the preprocessing makes , and how it affects our performance .</li>
         </ul>
@@ -132,19 +138,23 @@
 
         </ul>
         <hr>
-        <b class="text-center" style="font-size: 28px"> Data Structues and Algorithms with their Justification</b>
+        <b class="text-center" style="font-size: 28px"> Data Structures and Algorithms with their Justification</b>
         <hr>
         We have majorly used 3 data structures:<br><br>
         <ul>
           <li>
-            <b>String</b> : It is used in multiple function calls and instances. This data type forms the basis of our dataset.<br><br>
-            <i>Justification:</i> From query to the email output almost everything is a sequence of characters, String is most obvious structure to use in such cases. They can be efficiently managed and can be splitted by space to get
+            <b>String</b> : It is used in multiple function calls and instances. This data type forms the basis of our
+            dataset.<br><br>
+            <i>Justification:</i> From query to the email output almost everything is a sequence of characters, String
+            is most obvious structure to use in such cases. They can be efficiently managed and can be split by space to
+            get
             <ul>
               <li>
                 Individual words to remove stopwords, and find embeddings
                 <ul>
                   <li>bert-embedding gets strings and finds each embeddings of each word in it.</li>
-                  <li>glove embeddings are stored in a dictionary which have words in the form of strings as keys for indexing.</li>
+                  <li>glove embeddings are stored in a dictionary which have words in the form of strings as keys for
+                    indexing.</li>
                 </ul>
               </li>
               <br>
@@ -152,17 +162,20 @@
                 Individual sentences to find the most similar ones
                 <ul>
                   <li>
-                    We have queried for similarity with each sentence and this means to find each sentence which is very efficient and convinient once we use strings.
+                    We have queried for similarity with each sentence and this means to find each sentence which is very
+                    efficient and convenient once we use strings.
                   </li>
                 </ul>
               </li>
-            </ul> 
+            </ul>
           </li>
           <br>
           <li>
-            Lists : It has been used to store multiple strings. Our corpus is made up of a list of strings. 
+            Lists : It has been used to store multiple strings. Our corpus is made up of a list of strings.
             <br><br>
-            <i>Justification:</i> Lists make it very convinient to handel large dimensional data, the embeddings of each word is a large (300, 768) dimentional data. The usage of lists help us by:
+            <i>Justification:</i> Lists make it very convenient to handel large dimensional data, the embeddings of each
+            word is a large (300, 768) dimentional data. The usage of lists help us by:
+            <br><br>
             <ul>
               <li>
                 Finding Cosine Score is very streamlined when we use lists.
@@ -171,23 +184,54 @@
                     numpy library has inbuilt function to find the dot product which takes a list as input.
                   </li>
                   <li>
-                    Dividing the cosine by the magnitude of the large embedding is easily possible by numpy making the process efficient and convinient.
+                    Dividing the cosine by the magnitude of the large embedding is easily possible by numpy making the
+                    process efficient and convinient.
                   </li>
                 </ul>
               </li><br>
               <li>
-                ##NNNEEED TO WRITEEEEEEEEEEEEEEEEEEEEEE!!!!!!!!!!!!!!!
+                Sorting the resultant cosing scores
+                <ul>
+                  <li>
+                    Cosine scores are returned as an array where we need to sort them to get the top scores. This is
+                    most conviniently and efficiently done in the data structure of array. This is one of the
+                    functonality of numpy, streamiling the task.
+                  </li>
+                </ul>
               </li>
-
             </ul>
-            </li>
-          <li>Dictionary : We have used this for creating our references from line to email. </li>
+          </li><br>
+
           <li>
-            Combination of dictionary and Lists
+            Dictionary : This data structure has key and value pairs where the key in the structure gives value.<br><br>
+            <i>Justification :</i> We have used this for creating our references from line to email. This is used to
+            streamline and make the structure more readable and easier to access.<br><br>
+            <ul>
+              <li>
+                Dictionary makes our indexing bound to not only numbers, it enables us to use string references to
+                access the data.
+              </li><br>
+              <li>
+                We have an index reference dictionary which maps line number in the corpus to the email it belongs and
+                the start line number of the email, if we were to do it in an array, we would have to search through an
+                array which would have been linear or at best logarithmic whereas, in a dictionary, we have
+                near-constant access time.
+              </li><br>
+            </ul>
+          </li>
+          <li>
+            Dictionary of Lists: In this data structure we have a dictionary mapping to a list.<br><br>
+            <i>Justification : </i> The dataset is loaded in 3 parts <i>Test, Train</i> and <i>Validation</i>, where
+            each is a dictionary having <i>email_body</i> and <i>subject_line</i> for each mail, so we have a list of
+            mails and their corresponding subject line split into test, train, and validation, for storing this the best
+            data structure is a dictionary mapping to a list.<br>
+            This kind of usage makes the structure very intuitive, as the people who will be using this will be new and
+            an array structure will not intuivitively give them understanding, what index is subject and what is mail
+            body.
           </li>
         </ul>
         <hr>
-        
+
         <h3>Run-Time Analysis of our Search Engine: </h3>
         <hr>
 
@@ -202,7 +246,7 @@
             subwords to find the meaning, rather than just discarding the sentence.
           </li><br>
           <li>
-            BERT is highy parallel as the CPU user time is higher than the wall time, meaning that CPU worked more
+            BERT is highly parallel as the CPU user time is higher than the wall time, meaning that CPU worked more
             time that what elapsed in the real word, this is because the CPU is multithreaded.
           </li>
         </ul>
@@ -215,13 +259,13 @@
             <ol>
               <li>
                 The major difference in index building time in BERT and Glove is because for Glove we are reading
-                the Embeddings from the dictionary, where as for BERT we have to find the embeddings which is
-                compute intensive. This is highly parallalized due to this implementation on GPU.
+                the Embeddings from the dictionary, whereas for BERT we have to find the embeddings which is
+                compute intensive. This is highly parallelized due to this implementation on GPU.
               </li><br>
               <li>
-                The difference in the query search time is very miniscule as here we are iterating through the
-                Index and finding for the cosing score. Since glove doesn't have embeddings for every word it
-                skips maky sentences in the dataset which makes it loose information, decreasing the quantum it
+                The difference in the query search time is very minuscule as here we are iterating through the
+                Index and finding for the cosine score. Since glove doesn't have embeddings for every word it
+                skips maky sentences in the dataset which makes it lose information, decreasing the quantum it
                 has to traverse.
               </li>
             </ol>

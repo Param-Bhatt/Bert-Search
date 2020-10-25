@@ -36,11 +36,12 @@
             <ul>
               <li>
                 Preprocessing is actually faster in processing as it reduces the length of words to process because it
-                discards words not in the embeddings, BERT does a better job as it tries to find the embeddings of
+                discards words, not in the embeddings, BERT does a better job as it tries to find the embeddings of
                 subwords to find the meaning, rather than just discarding the sentence.
               </li><br>
               <li>
-                BERT is highy parallel as the CPU user time is higher than the wall time, meaning that CPU worked more
+                BERT is highly parallel as the CPU user time is higher than the wall time, meaning that the CPU worked
+                more
                 time that what elapsed in the real word, this is because the CPU is multithreaded.
               </li>
             </ul>
@@ -55,13 +56,13 @@
                 <ol>
                   <li>
                     The major difference in index building time in BERT and Glove is because for Glove we are reading
-                    the Embeddings from the dictionary, where as for BERT we have to find the embeddings which is
-                    compute intensive. This is highly parallalized due to this implementation on GPU.
+                    the Embeddings from the dictionary, whereas for BERT we have to find the embeddings which are
+                    computationally intensive. This is highly parallelized due to this implementation on GPU.
                   </li><br>
                   <li>
-                    The difference in the query search time is very miniscule as here we are iterating through the
-                    Index and finding for the cosing score. Since glove doesn't have embeddings for every word it
-                    skips maky sentences in the dataset which makes it loose information, decreasing the quantum it
+                    The difference in the query search time is very minuscule as here we are iterating through the
+                    Index and finding for the cosine score. Since glove doesn't have embeddings for every word it
+                    skips many sentences in the dataset which makes it lose information, decreasing the quantum it
                     has to traverse.
                   </li>
                 </ol>
@@ -75,19 +76,19 @@
               <t>
                 <ul>
                   <li>
-                    We tried to work on embeddings but handeling large number of datastructures like Dictionary, list,
+                    We tried to work on embeddings but handling a large number of data structures like Dictionary, list,
                     and combination of them, and the output of BertEmbeddings was challenging and interesting to
-                    discover new datastructures to streamline the job.
+                    discover new data structures to streamline the job.
                   </li><br>
                   <li>
-                    The BERT Embeddings were found by a function which was compute intensive which took 5 hours in
-                    google colab by CPU, we quickly realized that it is a parallizable task and the started to find
+                    The BERT Embeddings were found by a computationally intensive function which took 5 hours in
+                    google colab by CPU, we quickly realized that it is a parallelizable task and started to find
                     implementations of the task on GPU using module <i>Mxnet</i> which made the task faster by orders of
                     magnitude.
                   </li><br>
                   <li>
                     The Golve Embeddings were stored in a text file and we had to download them. The file had to be
-                    processed to find a dictionary which had mappings from the words to the vectors.
+                    processed to find a dictionary that had mappings from the words to the vectors.
                   </li>
                 </ul>
               </t>
@@ -101,8 +102,8 @@
                 <ul>
                   <li>
                     It was the right decision to work with embeddings even if we lose the positional meaning when we
-                    average, as the embeddings have meanings of words which are too complex to be identified by TF-IDF.
-                    We have examples (<i>weekend</i> is very similar to <i>before Friday</i>) to backup the theory that
+                    average, as the embeddings have meanings of words that are too complex to be identified by TF-IDF.
+                    We have examples (<i>weekend</i> is very similar to <i>before Friday</i>) to back-up the theory that
                     embeddings understand the words and give better results.
                   </li><br>
                   <li>
@@ -110,13 +111,13 @@
                     is significant in longer sentences where the model performs average.
                   </li><br>
                   <li>
-                    This was a good excercise to see how 2 embedding models scale up to each other, even though BERT has
-                    more than 2 times the number of dimentions than glove (786, 300) it performs a little better if not
+                    This was a good exercise to see how 2 embedding models scale up to each other, even though BERT has
+                    more than 2 times the number of dimensions than glove (786, 300) it performs a little better if not
                     as good as Glove. The gap will widen when we give positional information to the model.
                   </li><br>
                   <li>
-                    Looking forward, We would work on attention mechanism to make the models put focus on important
-                    phrases building up on the embeddings paradigm.
+                    Looking forward, We would work on an attention mechanism to make the models put focus on important
+                    phrases building upon the embeddings paradigm.
                   </li><br>
                 </ul>
               </t>
@@ -129,7 +130,7 @@
               <t>
                 <ul>
                   <li>
-                    We learnt about Embeddings and how to use them and what to do to imporve our retrieval system, in
+                    We learned about Embeddings and how to use them and what to do to improve our retrieval system, in
                     both accuracy and time.
                   </li>
                   <li>
